@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour Lounge | Style Gallery</title>
+    <style>
+        /* Inherit all the existing styles */
+        :root {
+            --primary: #e8a1a1; /* Soft blush pink */
+            --secondary: #d4af37; /* Gold */
+            --dark: #333;
+            --light: #fff;
+            --gray: #f5f5f5;
+            --pink: #FF9BB3;
+            --purple: #B399FF;
+            --yellow: #FFDE99;
+            --blue: #99C2FF;
+            --green: #99FFB3;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--pink), var(--purple));
+            padding: 1rem 5%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        /* Keep all existing header styles */
+        
+        /* Enhanced Gallery Styles */
+        .gallery-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 1.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gallery-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+        
+        .gallery-hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        /* Floating decorative elements for hero */
+        .floating-decoration {
+            position: absolute;
+            opacity: 0.3;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .decoration-1 {
+            top: 20%;
+            left: 10%;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.3);
+            animation-delay: 0s;
+        }
+        
+        .decoration-2 {
+            bottom: 30%;
+            right: 15%;
+            font-size: 2.5rem;
+            color: rgba(255,255,255,0.3);
+            animation-delay: 1s;
+        }
+        
+        .decoration-3 {
+            top: 40%;
+            right: 20%;
+            font-size: 2rem;
+            color: rgba(255,255,255,0.3);
+            animation-delay: 2s;
+        }
+        
+        .decoration-4 {
+            bottom: 20%;
+            left: 15%;
+            font-size: 2.8rem;
+            color: rgba(255,255,255,0.3);
+            animation-delay: 1.5s;
+        }
+        
+        .gallery-section {
+            padding: 5rem 10%;
+            background-color: var(--gray);
+            position: relative;
+        }
+        
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .gallery-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .gallery-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .gallery-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+        
+        /* Enhanced filter buttons */
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.7rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(232, 161, 161, 0.3);
+        }
+        
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.2) 50%, transparent 75%);
+            background-size: 400% 400%;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+        
+        .filter-btn:hover::after {
+            opacity: 1;
+            animation: shimmer 2s linear infinite;
+        }
+        
+        /* Masonry-style gallery grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Enhanced overlay with gradient */
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            opacity: 0;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .gallery-overlay h3 {
+            margin: 0 0 0.8rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .gallery-overlay p {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .gallery-service {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Before/After Slider */
+        .before-after-container {
+            grid-column: span 2;
+            position: relative;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .before-after-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .before-img {
+            width: 50%;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .after-img {
+            z-index: 1;
+        }
+        
+        .slider-handle {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: white;
+            z-index: 3;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+        }
+        
+        .slider-handle::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .slider-handle::after {
+            content: '↔';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        /* Instagram-style heart animation */
+        .like-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+        
+        .like-btn:hover {
+            background: rgba(232, 161, 161, 0.8);
+        }
+        
+        .like-btn.liked {
+            color: var(--primary);
+            animation: heartBeat 0.8s;
+        }
+        
+        /* Gallery CTA */
+        .gallery-cta {
+            text-align: center;
+            margin-top: 5rem;
+            position: relative;
+        }
+        
+        .gallery-cta .btn-primary {
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-decoration {
+            position: absolute;
+            font-size: 8rem;
+            color: rgba(232, 161, 161, 0.1);
+            z-index: 1;
+        }
+        
+        .cta-decoration-1 {
+            top: -50px;
+            left: 10%;
+        }
+        
+        .cta-decoration-2 {
+            bottom: -60px;
+            right: 15%;
+        }
+        
+        /* Testimonials in gallery */
+        .gallery-testimonials {
+            background: white;
+            padding: 4rem;
+            border-radius: 15px;
+            margin: 5rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .testimonial-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        
+        .testimonial-quote::before,
+        .testimonial-quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.2;
+            position: absolute;
+            line-height: 1;
+        }
+        
+        .testimonial-quote::before {
+            top: -20px;
+            left: -30px;
+        }
+        
+        .testimonial-quote::after {
+            bottom: -50px;
+            right: -30px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        /* Keep all existing responsive styles */
+        @media (max-width: 1200px) {
+            .before-after-container {
+                grid-column: span 1;
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .gallery-title {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .gallery-filter {
+                margin-bottom: 2rem;
+            }
+            
+            .filter-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .gallery-testimonials {
+                padding: 2rem;
+            }
+            
+            .testimonial-quote {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-hero p {
+                font-size: 1rem;
+            }
+            
+            .gallery-section {
+                padding: 3rem 5%;
+            }
+            
+            .gallery-overlay h3 {
+                font-size: 1.2rem;
+            }
+            
+            .gallery-overlay p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+        
+        /* Fun hover effects */
+        .gallery-item:nth-child(3n+1):hover {
+            transform: translateY(-10px) rotate(-2deg);
+        }
+        
+        .gallery-item:nth-child(3n+2):hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+        
+        .gallery-item:nth-child(3n):hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <div class="logo-container">
+                <img src="https://via.placeholder.com/60x60?text=GL" alt="Glamour Lounge Logo">
+                <div class="logo-text">Glamour Lounge</div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="book-now-btn">
+                    <i class="fas fa-calendar-alt"></i> Book Now
+                </button>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="services.html"><i class="fas fa-cut"></i> Services</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="gallery-hero">
+            <!-- Floating decorative elements -->
+            <div class="floating-decoration decoration-1">
+                <i class="fas fa-spa"></i>
+            </div>
+            <div class="floating-decoration decoration-2">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="floating-decoration decoration-3">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="floating-decoration decoration-4">
+                <i class="fas fa-sparkles"></i>
+            </div>
+            
+            <div class="gallery-hero-content">
+                <h1>Our Style Gallery</h1>
+                <p>Discover stunning transformations and get inspired for your next look</p>
+                <a href="booking.html" class="btn-primary">Book Your Transformation</a>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <h2 class="gallery-title">Hair Artistry Showcase</h2>
+                <p class="gallery-subtitle">Browse through our collection of masterpieces created by our talented stylists</p>
+                
+                <div class="gallery-filter">
+                    <button class="filter-btn active" data-filter="all">All Styles</button>
+                    <button class="filter-btn" data-filter="coloring">Coloring</button>
+                    <button class="filter-btn" data-filter="braiding">Braiding</button>
+                    <button class="filter-btn" data-filter="treatment">Treatments</button>
+                    <button class="filter-btn" data-filter="styling">Styling</button>
+                    <button class="filter-btn" data-filter="bridal">Bridal</button>
+                </div>
+                
+                <div class="gallery-grid">
+                    <!-- Before/After Slider -->
+                    <div class="before-after-container" data-category="coloring">
+                        <div class="like-btn"><i class="far fa-heart"></i></div>
+                        <img class="before-after-img after-img" src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="After coloring">
+                        <div class="before-img">
+                            <img class="before-after-img" src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Before coloring">
+                        </div>
+                        <div class="slider-handle"></div>
+                        <div class="gallery-overlay">
+                            <h3>Color Transformation</h3>
+                            <p>From dull brown to vibrant pastel pink - a complete makeover</p>
+                            <span class="gallery-service">Coloring</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Braiding -->
+                    <div class="gallery-item" data-category="braiding">
+                        <div class="like-btn"><i class="far fa-heart"></i></div>
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Elegant Braids">
+                        <div class="gallery-overlay">
+                            <h3>Box Braids</h3>
+                            <p>Protective styling with a modern twist using premium extensions</p>
+                            <span class="gallery-service">Braiding</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Treatment -->
+                    <div class="gallery-item" data-category="treatment">
+                        <div class="like-btn"><i class="far fa-heart"></i></div>
+                        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Hair Treatment">
+                        <div class="gallery-overlay">
+                            <h3>Keratin Treatment</h3>
+                            <p>Smoothing treatment for frizz-free, shiny hair that lasts months</p>
+                            <span class="gallery-service">Treatment</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Styling -->
+                    <div class="gallery-item" data-category="styling">
+                        <div class="like-btn"><i class="far fa-heart"></i></div>
+                        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Elegant Updo">
+                        <div class="gallery-overlay">
+                            <h3>Evening Updo</h3>
+                            <p>Sophisticated styling for special occasions with lasting hold</p>
+                            <span class="gallery-service">Styling</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Bridal -->
+                    <div class="gallery-item" data-category="bridal">
+                        <div class="like-btn"><i class="far fa-heart"></i></div>
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bridal Hairstyle">
+                        <div class="gallery-overlay">
+                            <h3>Bridal Elegance</h3>
+                            <p>Timeless wedding day hairstyle with delicate accessories</p>
+                            <span class="gallery-service">Bridal</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Coloring -->
+                    <div class="gallery-item" data-category="coloring">
+                        <div class="like-btn"><i class="far fa-heart"></i></div>
+                        <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pastel Hair Color">
+                        <div class="gallery-overlay">
+                            <h3>Pastel Fantasy</h3>
+                            <p>Soft pink tones blended with lavender for a dreamy look</p>
+                            <span class="gallery-service">Coloring</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Braiding -->
+                    <div class="gallery-item" data-category="braiding">
+                        <div class="like-btn"><i class="far fa-heart"></i></div>
+                        <img src="https://images.unsplash.com/photo-1589985270826-4b7bb1352109?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cornrow Braids">
+                        <div class="gallery-overlay">
+                            <h3>Cornrow Artistry</h3>
+                            <p>Intricate designs with geometric precision and golden accents</p>
+                            <span class="gallery-service">Braiding</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Treatment -->
+                    <div class="gallery-item" data-category="treatment">
+                        <div class="like-btn"><i class="far fa-heart"></i></div>
+                        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Hair Mask Treatment">
+                        <div class="gallery-overlay">
+                            <h3>Deep Conditioning</h3>
+                            <p>Restorative treatment for damaged hair with organic ingredients</p>
+                            <span class="gallery-service">Treatment</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial in gallery -->
+                <div class="gallery-testimonials">
+                    <p class="testimonial-quote">"I've never felt more beautiful than after my transformation at Glamour Lounge. The stylists are true artists who listen to what you want and deliver beyond expectations!"</p>
+                    <p class="testimonial-author">— Sarah W., Loyal Client Since 2020</p>
+                </div>
+                
+                <div class="gallery-cta">
+                    <div class="cta-decoration cta-decoration-1">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="cta-decoration cta-decoration-2">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Ready for Your Transformation?</h3>
+                    <p>Book a consultation with our stylists to create your perfect look</p>
+                    <a href="booking.html" class="btn-primary">Book Your Appointment</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-banner" style="background: linear-gradient(135deg, var(--pink), var(--purple));">
+            <div class="promo-content">
+                <h2 class="promo-title">Follow Us on Instagram!</h2>
+                <p class="promo-text">For daily inspiration, behind-the-scenes, and exclusive offers</p>
+                <a href="https://instagram.com" class="btn-primary" style="background-color: var(--secondary);">
+                    <i class="fab fa-instagram"></i> @GlamourLoungeNairobi
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div class="floating-booking-btn">
+        <a href="booking.html">
+            <i class="fas fa-calendar-alt"></i> Book Now
+        </a>
+    </div>
+
+    <div class="whatsapp-widget">
+        <a href="https://wa.me/254715600763">
+            <i class="fab fa-whatsapp"></i> Chat Now
+        </a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="booking.html"><i class="fas fa-chevron-right"></i> Book Online</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Westlands, Nairobi</li>
+                    <li><i class="fas fa-phone"></i> +254 700 123456</li>
+                    <li><i class="fas fa-envelope"></i> info@glamourlounge.co.ke</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sat: 9AM - 7PM</li>
+                    <li><i class="fas fa-clock"></i> Sun: 10AM - 4PM</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay connected for the latest trends and offers</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+                <h3 style="margin-top: 2rem;">Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Glamour Lounge. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary);"></i> in Nairobi</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Enhanced gallery filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item, .before-after-container');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Before/After Slider functionality
+        const beforeAfterContainer = document.querySelector('.before-after-container');
+        if (beforeAfterContainer) {
+            const beforeImg = beforeAfterContainer.querySelector('.before-img');
+            const sliderHandle = beforeAfterContainer.querySelector('.slider-handle');
+            let isDragging = false;
+            
+            function updateSliderPosition(clientX) {
+                const containerRect = beforeAfterContainer.getBoundingClientRect();
+                let newWidth = ((clientX - containerRect.left) / containerRect.width) * 100;
+                
+                // Constrain between 5% and 95%
+                newWidth = Math.min(Math.max(newWidth, 5), 95);
+                
+                beforeImg.style.width = `${newWidth}%`;
+                sliderHandle.style.left = `${newWidth}%`;
+            }
+            
+            sliderHandle.addEventListener('mousedown', () => {
+                isDragging = true;
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    updateSliderPosition(e.clientX);
+                }
+            });
+            
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+            
+            // Touch support
+            sliderHandle.addEventListener('touchstart', () => {
+                isDragging = true;
+            });
+            
+            document.addEventListener('touchmove', (e) => {
+                if (isDragging) {
+                    updateSliderPosition(e.touches[0].clientX);
+                }
+            });
+            
+            document.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        }
+        
+        // Like button functionality
+        const likeBtns = document.querySelectorAll('.like-btn');
+        likeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                this.classList.toggle('liked');
+                
+                if (this.classList.contains('liked')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                }
+            });
+        });
+        
+        // Dark mode toggle
+        const darkModeToggle = document.querySelector('.dark-mode-toggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                body.style.backgroundColor = '#1a1a1a';
+                body.style.color = '#f0f0f0';
+                document.documentElement.style.setProperty('--dark', '#f0f0f0');
+                document.documentElement.style.setProperty('--light', '#2a2a2a');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                body.style.backgroundColor = '';
+                body.style.color = '';
+                document.documentElement.style.setProperty('--dark', '#333');
+                document.documentElement.style.setProperty('--light', '#fff');
+            }
+        });
+        
+        // Book now button
+        document.querySelector('.book-now-btn').addEventListener('click', () => {
+            window.location.href = 'booking.html';
+        });
+        
+        // Fun hover effects for gallery items
+        galleryItems.forEach((item, index) => {
+            // Add slight delay to each item's hover effect
+            item.style.transitionDelay = `${index * 0.05}s`;
+            
+            // Add sparkle effect on hover
+            item.addEventListener('mouseenter', function() {
+                const sparkles = document.createElement('div');
+                sparkles.innerHTML = '<i class="fas fa-sparkle"></i>';
+                sparkles.style.position = 'absolute';
+                sparkles.style.top = '50%';
+                sparkles.style.left = '50%';
+                sparkles.style.transform = 'translate(-50%, -50%)';
+                sparkles.style.fontSize = '3rem';
+                sparkles.style.color = 'rgba(255,255,255,0.7)';
+                sparkles.style.opacity = '0';
+                sparkles.style.animation = 'fadeInOut 1s';
+                sparkles.style.zIndex = '3';
+                this.appendChild(sparkles);
+                
+                setTimeout(() => {
+                    sparkles.remove();
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

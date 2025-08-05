@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Glamour Lounge</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Elegant base with playful touches */
+        :root {
+            --primary: #e8a1a1; /* Soft blush pink */
+            --secondary: #d4af37; /* Gold */
+            --dark: #333;
+            --light: #fff;
+            --gray: #f5f5f5;
+            --pink: #FF9BB3;
+            --purple: #B399FF;
+            --yellow: #FFDE99;
+            --blue: #99C2FF;
+            --green: #99FFB3;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        /* Header - matching the main page */
+        header {
+            background: linear-gradient(to right, var(--pink), var(--purple));
+            padding: 1rem 5%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-container img {
+            height: 60px;
+            transition: transform 0.3s;
+        }
+        
+        .logo-container .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            margin-left: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        nav a i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .dark-mode-toggle, .book-now-btn {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: white;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .book-now-btn {
+            background: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .book-now-btn:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .services-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 1.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .services-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+        
+        .services-hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 3rem auto;
+            max-width: 800px;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: white;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: linear-gradient(to right, var(--pink), var(--purple));
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 5% 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .service-card h3 {
+            margin: 1rem 0 0.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .service-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .service-meta {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .service-price {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .btn-book {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(232, 161, 161, 0.4);
+            font-family: 'Montserrat', sans-serif;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn-book:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .service-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        /* Packages Section */
+        .service-packages {
+            background: var(--gray);
+            padding: 5rem 10%;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .package-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .package-card h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .package-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .package-card ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #666;
+        }
+        
+        .package-card ul li:before {
+            content: '✓';
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .package-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn-package {
+            display: inline-block;
+            background: linear-gradient(to right, var(--pink), var(--purple));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn-package:hover {
+            background: linear-gradient(to right, var(--purple), var(--pink));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Products Section */
+        .product-showcase {
+            padding: 5rem 10%;
+            text-align: center;
+        }
+        
+        .products-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 1rem 0;
+            margin: 2rem 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .products-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .products-slider::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .products-slider::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        .product-card {
+            min-width: 280px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            text-align: center;
+            scroll-snap-align: start;
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .product-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-card p {
+            font-weight: bold;
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .slider-arrows {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+        }
+        
+        .slider-arrows button {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slider-arrows button:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .btn-contact {
+            display: inline-block;
+            background: linear-gradient(to right, var(--secondary), var(--green));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn-contact:hover {
+            background: linear-gradient(to right, var(--green), var(--secondary));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Floating Button & Footer */
+        .floating-booking-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+        
+        .floating-booking-btn a {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(45deg, var(--primary), var(--purple));
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .floating-booking-btn a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            animation: none;
+        }
+        
+        .floating-booking-btn i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 10% 2rem;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .footer-section i {
+            margin-right: 0.8rem;
+            color: var(--primary);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .services-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .services-hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .hamburger {
+                display: block;
+                order: 1;
+            }
+            
+            .logo-container {
+                order: 2;
+                flex-grow: 1;
+                justify-content: center;
+            }
+            
+            .nav-buttons {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+            
+            nav {
+                width: 100%;
+                order: 4;
+                display: none;
+                margin-top: 1rem;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            nav a {
+                justify-content: center;
+                padding: 0.8rem;
+            }
+            
+            .services-hero {
+                height: 50vh;
+            }
+            
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .service-packages, .product-showcase {
+                padding: 3rem 5%;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .services-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .services-hero p {
+                font-size: 1rem;
+            }
+            
+            .category-tabs {
+                gap: 0.5rem;
+            }
+            
+            .tab-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <div class="logo-container">
+                <img src="https://via.placeholder.com/60x60?text=GL" alt="Glamour Lounge Logo">
+                <div class="logo-text">Glamour Lounge</div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="book-now-btn">
+                    <i class="fas fa-calendar-alt"></i> Book Now
+                </button>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="services.html"><i class="fas fa-cut"></i> Services</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="services-hero">
+            <div class="hero-content">
+                <h1>Our Services</h1>
+                <p>Premium treatments for your perfect look</p>
+                <a href="booking.html" class="btn-primary">Book an Appointment <i class="fas fa-sparkle"></i></a>
+            </div>
+        </section>
+
+        <!-- Categories & Grid -->
+        <section class="service-categories">
+            <!-- Tabs -->
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">All Services</button>
+                <button class="tab-btn" data-category="cutting">Cutting</button>
+                <button class="tab-btn" data-category="coloring">Coloring</button>
+                <button class="tab-btn" data-category="styling">Styling</button>
+                <button class="tab-btn" data-category="treatment">Treatments</button>
+            </div>
+
+            <!-- Service Cards -->
+            <div class="services-grid">
+                <!-- Cutting -->
+                <div class="service-card" data-category="cutting">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Haircut">
+                    <div class="card-content">
+                        <h3>Signature Haircut</h3>
+                        <p>Precision cutting tailored to your face shape and lifestyle</p>
+                        <div class="service-meta">
+                            <span class="service-price">KSh 1,500</span>
+                            <span class="duration">45 mins</span>
+                        </div>
+                        <a href="booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <!-- Coloring -->
+                <div class="service-card" data-category="coloring">
+                    <div class="service-badge">Popular</div>
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Hair Coloring">
+                    <div class="card-content">
+                        <h3>Premium Coloring</h3>
+                        <p>Full color, highlights, balayage or ombre with top‑quality products</p>
+                        <div class="service-meta">
+                            <span class="service-price">From KSh 3,500</span>
+                            <span class="duration">2‑3 hrs</span>
+                        </div>
+                        <a href="booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <!-- Styling -->
+                <div class="service-card" data-category="styling">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Hair Braiding">
+                    <div class="card-content">
+                        <h3>Artistic Braiding</h3>
+                        <p>Traditional and modern braiding styles with hair extensions</p>
+                        <div class="service-meta">
+                            <span class="service-price">From KSh 2,500</span>
+                            <span class="duration">2‑4 hrs</span>
+                        </div>
+                        <a href="booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <!-- Treatment -->
+                <div class="service-card" data-category="treatment">
+                    <div class="service-badge">New</div>
+                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Keratin Treatment">
+                    <div class="card-content">
+                        <h3>Keratin Treatment</h3>
+                        <p>Smoothing treatment that reduces frizz and adds shine</p>
+                        <div class="service-meta">
+                            <span class="service-price">KSh 6,000</span>
+                            <span class="duration">3 hrs</span>
+                        </div>
+                        <a href="booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <!-- More Cutting -->
+                <div class="service-card" data-category="cutting">
+                    <img src="https://images.unsplash.com/photo-1596704017250-13a7e5a7c6a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Beard Grooming">
+                    <div class="card-content">
+                        <h3>Beard Grooming</h3>
+                        <p>Precision beard trim with hot towel treatment</p>
+                        <div class="service-meta">
+                            <span class="service-price">KSh 1,200</span>
+                            <span class="duration">30 mins</span>
+                        </div>
+                        <a href="booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+
+                <!-- Treatment -->
+                <div class="service-card" data-category="treatment">
+                    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Scalp Treatment">
+                    <div class="card-content">
+                        <h3>Scalp Revival</h3>
+                        <p>Therapeutic treatment for dry, itchy or flaky scalp</p>
+                        <div class="service-meta">
+                            <span class="service-price">KSh 2,800</span>
+                            <span class="duration">1 hr</span>
+                        </div>
+                        <a href="booking.html" class="btn-book">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Packages -->
+        <section class="service-packages">
+            <h2 class="section-title">Special Packages</h2>
+            <p class="section-subtitle">Save with our curated service bundles designed for every need</p>
+            <div class="packages-grid">
+                <!-- Bridal -->
+                <div class="package-card">
+                    <h3>Bridal Package</h3>
+                    <ul>
+                        <li>Consultation</li>
+                        <li>Trial hairstyle</li>
+                        <li>Wedding‑day styling</li>
+                        <li>Touch‑up kit</li>
+                    </ul>
+                    <div class="package-price">KSh 15,000</div>
+                    <a href="booking.html" class="btn-package">Book Package</a>
+                </div>
+
+                <!-- Transformation -->
+                <div class="package-card">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3>Total Transformation</h3>
+                    <ul>
+                        <li>Cut &amp; Style</li>
+                        <li>Full Color</li>
+                        <li>Deep Conditioning</li>
+                        <li>Blowout</li>
+                    </ul>
+                    <div class="package-price">KSh 8,500</div>
+                    <a href="booking.html" class="btn-package">Book Package</a>
+                </div>
+
+                <!-- Monthly -->
+                <div class="package-card">
+                    <h3>Monthly Glow</h3>
+                    <ul>
+                        <li>4 Haircuts</li>
+                        <li>2 Treatments</li>
+                        <li>Free Products</li>
+                        <li>Priority Booking</li>
+                    </ul>
+                    <div class="package-price">KSh 12,000</div>
+                    <a href="booking.html" class="btn-package">Book Package</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section class="product-showcase">
+            <h2 class="section-title">Our Premium Products</h2>
+            <p class="section-subtitle">Professional-grade products to maintain your salon look at home</p>
+            <div class="products-slider">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Hydrating Shampoo">
+                    <h3>Hydrating Shampoo</h3>
+                    <p>KSh 1,800</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1607602132700-06825813d3cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Argan Oil">
+                    <h3>Argan Oil</h3>
+                    <p>KSh 2,500</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1607602132700-06825813d3cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Heat Protectant">
+                    <h3>Heat Protectant</h3>
+                    <p>KSh 2,200</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Texturizing Spray">
+                    <h3>Texturizing Spray</h3>
+                    <p>KSh 1,900</p>
+                </div>
+            </div>
+            <div class="slider-arrows">
+                <button class="arrow-left"><i class="fas fa-chevron-left"></i></button>
+                <button class="arrow-right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <a href="contact.html" class="btn-contact">Inquire About Products</a>
+        </section>
+    </main>
+
+    <!-- Floating Booking Button -->
+    <div class="floating-booking-btn">
+        <a href="booking.html"><i class="fas fa-calendar-alt"></i> Book Now</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="booking.html"><i class="fas fa-chevron-right"></i> Book Online</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Westlands, Nairobi</li>
+                    <li><i class="fas fa-phone"></i> +254 700 123456</li>
+                    <li><i class="fas fa-envelope"></i> info@glamourlounge.co.ke</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sat: 9AM - 7PM</li>
+                    <li><i class="fas fa-clock"></i> Sun: 10AM - 4PM</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay connected for the latest trends and offers</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+                <h3 style="margin-top: 2rem;">Newsletter</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Glamour Lounge. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary);"></i> in Nairobi</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Category Filter
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.dataset.category;
+                document.querySelectorAll('.service-card').forEach(card => {
+                    card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
+                });
+            });
+        });
+        
+        // Product Slider
+        const slider = document.querySelector('.products-slider');
+        let scrollAmt = 0;
+        const cardW = 280; // Approx width incl. gap
+        
+        function scrollProducts(dir) {
+            const max = slider.scrollWidth - slider.clientWidth;
+            scrollAmt = dir === 'left'
+                ? Math.max(scrollAmt - cardW, 0)
+                : Math.min(scrollAmt + cardW, max);
+            slider.scrollTo({ left: scrollAmt, behavior: 'smooth' });
+        }
+        
+        document.querySelector('.arrow-left').addEventListener('click', () => scrollProducts('left'));
+        document.querySelector('.arrow-right').addEventListener('click', () => scrollProducts('right'));
+        
+        // Dark mode toggle
+        const darkModeToggle = document.querySelector('.dark-mode-toggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                body.style.backgroundColor = '#1a1a1a';
+                body.style.color = '#f0f0f0';
+                document.documentElement.style.setProperty('--dark', '#f0f0f0');
+                document.documentElement.style.setProperty('--light', '#2a2a2a');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                body.style.backgroundColor = '';
+                body.style.color = '';
+                document.documentElement.style.setProperty('--dark', '#333');
+                document.documentElement.style.setProperty('--light', '#fff');
+            }
+        });
+        
+        // Book now button
+        document.querySelector('.book-now-btn').addEventListener('click', () => {
+            window.location.href = 'booking.html';
+        });
+    </script>
+</body>
+</html>
